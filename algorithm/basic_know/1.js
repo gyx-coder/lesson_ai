@@ -5,6 +5,6 @@ function traverse(arr) {
     console.log(arr[i]); // n
   }
 }
-// T(n)= 1 + n + 1 + n + n = 3n + 3 = O(n)
+// T(n)= 1 + 1 + n + 1 + n + n = 3n + 3 = O(n)
 // 代码的执行次数 T(n) 
 traverse();

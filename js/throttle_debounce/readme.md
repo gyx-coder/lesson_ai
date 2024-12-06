@@ -32,3 +32,17 @@
       http://localhost:3001/posts/2  DELETE
 
 - json-server 是一个支持restful api 设计的数据服务器
+
+- 全栈防抖
+  - 前后端分离 解耦 
+    - 前端 live-server 5500
+      fetch url 
+    - 后端 json-server 3001 
+      url 接口服务 restful 
+    - api 接口 
+
+- filter、map 
+  - 都是Array.prototype 上的方法, 所有的数组都有
+  - filter 数组过滤，回调函数返回值是否为true
+  - map  数组映射，回调函数返回值为新的数组 原有数组不能满足需求
+  - forEach 迭代每一项 不需要返回

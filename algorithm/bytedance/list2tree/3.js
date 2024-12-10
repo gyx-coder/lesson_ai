@@ -33,6 +33,16 @@ function list2Tree(list ){
     // map 初始化， O(1)
     map[item.id] = { ...item, children: [] }
   })
+
+  list .forEach(item => {
+    if(item.parentId){
+      map[item.parentId.children.push(map[item.id])]
+    }else {
+      root.push(map[item.id])
+    }
+  })
+  
+  return root
 }
 
 console.log(list2Tree(list))

@@ -14,7 +14,7 @@ class MyQueue {
   pop() {
     // 不为空，那么stack2 的顶部就是队列
     if (this.stack2.length === 0) {
-      while (this.stack2.length===0){
+      while (this.stack1.length>0){
        this.stack2.push(this.stack1.pop()) 
       }
     }
@@ -23,7 +23,7 @@ class MyQueue {
 
   peek(){
     if(this.stack2.length===0){
-      while(this.stack1.length!==0){
+      while(this.stack1.length>0){
         this.stack2.push(this.stack1.pop())
       }
     }

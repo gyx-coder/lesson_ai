@@ -10,7 +10,6 @@
     <van-tabbar-item icon="shopping-cart" to="/shopping">商城</van-tabbar-item>
     <van-tabbar-item icon="manager" to="/mine">我的</van-tabbar-item>
   </van-tabbar>
-  
 </template>
 
 <script setup lang="ts">

@@ -1,11 +1,17 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
+// es6 module 高级用法 引入类型时import type
+import type {
+  ShopTopBarItem,
+  recommendItem
+} from "@/types/shop";
 
 // 数据状态放到store
 // shop store 
 export const useShopStore = defineStore('shop', () => {
   // 静态数据
-  const topBarState = ref([
+  // 泛型 类型约束 类型的传参
+  const topBarState = ref<ShopTopBarItem[]>([
     {
       title: "酒店",
       icon: "hotel-o",

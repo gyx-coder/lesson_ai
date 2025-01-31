@@ -59,7 +59,7 @@
 <script setup lang="ts">
 import { ref,toRefs } from 'vue';
 const showPicker = ref(false);
-import { useShopStore } from '../../store/shopStore';
+import { useShopStore } from '@/store/shopStore';
 
 const shopStore = useShopStore();
 // 解构出来会丢失响应能力

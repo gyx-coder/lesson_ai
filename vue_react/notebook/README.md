@@ -60,3 +60,32 @@
 
 - vite 
   - 按需加载 vite-plugin-style-import 
+
+- less stylus css 预编译
+  - 快
+  - less 
+  - 变量、嵌套、混合函数
+  - module css 
+    - style.module.less
+    - 支持 css 模块
+      - vite 申明 less -> 解析
+      - {s.index} 
+
+- 移动端适配
+  rem 10rem = 宽度
+  - lib-flexible rem 适配
+  - postcss-px2rem 包 自动化px 转 rem 提高开发效率
+    - PostCSS 允许开发者通过一系列插件来处理和增强 CSS 文件，使其具备更高的可维护性、兼容性和性能
+
+- axios 配置
+  - baseURL
+    前后端分离，前端访问的都是后端的接口，一般都会以/api 开头
+    方便，baseURL 统一配置
+    - axios + vite proxy
+      跨域问题 新解决方案
+  - 请求、响应拦截器
+    - 统一的token 设置
+    - 统一的错误处理
+      401 404 500 !200
+      - res 丰富的 状态码 config res ... 库的功能
+      - return res.data 直接返回数据 api一样简单

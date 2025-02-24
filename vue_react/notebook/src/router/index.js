@@ -1,6 +1,5 @@
-import Index from '../views/Index'
-import About from '../views/About'
-import { component } from 'react'
+import Index from '@/views/Index'
+import About from '@/views/About'
 
 const routes =[
   {

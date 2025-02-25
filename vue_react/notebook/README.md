@@ -89,3 +89,37 @@
       401 404 500 !200
       - res 丰富的 状态码 config res ... 库的功能
       - return res.data 直接返回数据 api一样简单
+
+
+
+
+# notebook 后端api服务
+
+## egg.js 阿里的开源框架
+- koa 极简
+  - middlewares 洋葱模型 函数
+  - http listen
+  - ctx
+- 企业级开发 中大型项目
+  mvc 
+  npm init egg --type=simple
+  后台开发的模板 
+  - app 目录应用开发的主目录
+  - 约定大于一切
+    - router.js 后端路由
+
+  - URL 的构成
+  queryString params 
+  http://localhost:3000/user/1
+
+
+- csrf 攻击
+  - 拦截？ 
+    apifox  不是用户 
+    userAgent 
+
+- post 请求体的格式
+  - form-data 有附件
+  - x-www-form-urlencoded key=>value
+  - json  复杂数据结构
+- get / post 区别 

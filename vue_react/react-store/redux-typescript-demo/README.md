@@ -1,0 +1,3 @@
+- redux 
+- type 和 interface 区别
+  - 相同点 

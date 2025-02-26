@@ -87,8 +87,22 @@
     - 统一的token 设置
     - 统一的错误处理
       401 404 500 !200
-      - res 丰富的 状态码 config res ... 库的功能
-      - return res.data 直接返回数据 api一样简单
+    - res 丰富的 状态码 config res ... 库的功能
+    - return res.data 直接返回数据 api一样简单
+  - cookie http 1.0
+    - http 协议本地是无状态的 method url 返回结果一定一样
+    - 小饼干 字符串
+    - key = value;key2 = value
+    - kb 关键 用户身份等
+    - 请求时都会默认带上，太大的话会影响http性能
+    - expires
+    - domain 当下域名的cookie
+    - path 限制 cookie/api    /uesr
+    - httpOnly 请求时带上  js 没有办法获取，更安全
+      XSS 跨站脚本攻击 黑客通过 发文、评论、注入， 获取cookie的代码，并执行
+      黑客使用我们cookie 访问某网站， 安全问题
+      <script>  <  &lt;
+    - secure 安全的cookie  https 协议下才会带上
 
 
 

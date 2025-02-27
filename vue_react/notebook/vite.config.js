@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { createStyleImportPlugin } from 'vite-plugin-style-import'
-import path from 'path' 
-console.log(__dirname)
+import path from 'path'
+// console.log(__dirname)
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), createStyleImportPlugin({
@@ -14,25 +14,33 @@ export default defineConfig({
       }
     ]
   })],
-  css:{
-    modules:{
-      localsConvention:'dashesOnly'
+  css: {
+    modules: {
+      localsConvention: 'dashesOnly'
     }
   },
-  resolve :{
-    alias:{
+  resolve: {
+    alias: {
       // 项目的物理路径
-      '@':path.resolve(__dirname,'src'),
-      'utils':path.resolve(__dirname,'src/utils')
+      '@': path.resolve(__dirname, 'src'),
+      'utils': path.resolve(__dirname, 'src/utils')
     }
   },
-  server:{
-    proxy:{
-      '/api':{
-        target:'http://localhost:3000/api/', 
-        changeOrigin:true, 
-        rewrite:(path)=>path.replace(/^\/api/,'') 
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000/api/',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
       }
     }
-  }
+  },
+  external: [
+    '@babel/runtime/helpers/getPrototypeOf',
+    '@babel/runtime/helpers/defineProperty',
+    '@babel/runtime/helpers/classCallCheck',
+    '@babel/runtime/helpers/createClass',
+    '@babel/runtime/helpers/inherits',
+    '@babel/runtime/helpers/possibleConstructorReturn'
+  ]
 })

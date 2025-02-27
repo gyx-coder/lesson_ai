@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { TabBar } from 'zarm';
+import s from './style.module.less'
 // 有哪些类型
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import CustomIcon from '@/components/CustomIcon';
 
 const NavBar = ({ showNav }) => {
   const [activeKey, setActiveKey] = useState('/');
@@ -14,18 +16,21 @@ const NavBar = ({ showNav }) => {
   }
 
   return (
-    <TabBar visible={showNav.toString()} activeKey={activeKey} onChange={changeTab}>
+    <TabBar className={s.tab} visible={showNav.toString()} activeKey={activeKey} onChange={changeTab}>
       <TabBar.Item
         itemKey="/"
         title="账单"
+        icon={<CustomIcon type="zhangdan"/>}
       />
       <TabBar.Item
         itemKey="/data"
         title="统计"
+        icon={<CustomIcon type="tongji"/>}
       />
       <TabBar.Item
         itemKey="/user"
         title="我的"
+        icon={<CustomIcon type="wode"/>}
       />
     </TabBar>
   );

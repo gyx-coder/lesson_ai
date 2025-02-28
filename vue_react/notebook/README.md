@@ -71,7 +71,7 @@
       - vite 申明 less -> 解析
       - {s.index} 
 
-- 移动端适配
+- 移动端适配 
   rem 10rem = 宽度
   - lib-flexible rem 适配
   - postcss-px2rem 包 自动化px 转 rem 提高开发效率
@@ -111,6 +111,25 @@
   - change setActiveKey
   - icon
     - iconfont 定制
+  - showNavBar 
+    - 默认是false，路由切换 showNavBar 为true
+    - 伪代码 当业务复杂或不太熟悉时可用
+    - useLocation 拿到当前的路由， 解构出路径
+    - useEffect 监听 路由变化
+- react hooks?
+  - useState 响应式
+  - useEffect 生命周期 副作用
+  - memo 缓存组件
+  - useMemo 缓存计算结果
+  - useCallback 缓存函数
+  - react-router-dom  useNavigate useLocation
+  - 函数式编程思想 use hooks 很方便的作用
+- react-router-dom
+  BrowserRouter HashRouter
+  Router Routes Route 组件
+  useNavigate useLocation 属于路由，路由改变 更新
+  useEffect 依赖 观察路由变化
+
 - CustomIcon 的组件
   Icon.createFromIconfont
 - react-router-dom
@@ -131,12 +150,41 @@
   - 函数组件对象 propTypes 属性
   - PropTypes.bool
 
-- 
+- css 
+  - react module css
+  - less
+    嵌套
+    &
+    less :global 选择器用于在局部作用域的 LESS 文件中定义全局样式，使指定的 CSS 规则应用到全局范围，而不受局部作用域限制。这在模块化组件开发中非常有用。
+  - iconfont  性能优化
+  - linear-gradient  线性渐变色  代替图片
+  - px2rem 
 
+- 功能需求分析
+  - 登录、注册切换功能
+    - 切换下面的表单  useState type login/register
+    - onclick 切换 type
+    - type  active
+    - useEffect + useLocation url/login/register
 
+- 项目用了哪些包？
+  - classnames  动态类名的逻辑安排
 
+- 记账产品
+  - 账单首页 
+    - 时间和类型 查询
+    - 账单列表
+  - 可视化账单 数据
+    echarts 图标展示
+  - CRUD 用户 账单 
+    - jwt
+    - 跨域
+    - 文件上传
+  - 我的
 
-
+## 用户页面的静态开发
+  - 行内样式
+    {{"":"",}}
 
 
 

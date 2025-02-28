@@ -16,14 +16,16 @@ export default function App() {
 
   const [showNav, setShowNav] = useState(false)
   const needNav = ['/','/data']
-  const location = useLocation()
-  console.log(location)
-  
+  const { pathname } = useLocation() // 路由切换的路径
+  // console.log(location)
+  // 当url 切换为/user 的时候 showNav false
   useEffect(()=>{
     // 当前路径
     // 是否在needNav中
-    // setShowNav
-  },[])
+    setShowNav(
+      needNav.includes(pathname)
+    )
+  },[pathname])
   
   return (
     <ConfigProvider primaryColor='#007fff'>

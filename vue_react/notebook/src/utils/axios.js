@@ -6,7 +6,7 @@ axios.defaults.baseURL = '/api'
 // 跨域 默认不带cookie 
 axios.defaults.withCredentials = true // 跨域请求携带cookie
 // 约定 后端知道  异步请求
-axios.defaults.headers[X-Request-With] = 'XMLHttpRequest'
+axios.defaults.headers['X-Request-With'] = 'XMLHttpRequest'
 // JWT token Authorization 授权码
 axios.defaults.headers['Authorization'] = `${localStorage.getItem('token')} || null`
 axios.defaults.headers.post['Content-Type'] = 'application/json'

@@ -185,7 +185,15 @@
 ## 用户页面的静态开发
   - 行内样式
     {{"":"",}}
-
+  - nth-of-type 会根据元素的类型进行计数
+  - align-self baseline 主轴是纵向的，对齐子元素的宽度
+  
+  - react 和 vue slot 和props.children 区别
+    - 以modal 组件为例的， 通用组件  万达  负责招商
+    - 需要强大的定制性  入驻
+      title footer props  string | JSX 传入
+    - content 表单 | JSX ... slot(插槽，具名插槽)
+    
 
 
 

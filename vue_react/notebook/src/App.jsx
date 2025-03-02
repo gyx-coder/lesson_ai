@@ -12,10 +12,12 @@ import { ConfigProvider } from 'zarm';
 // import 'zarm/dist/zarm.css'; // vite-plugin-style-import 自动引入css
 import NavBar from './components/NavBar';
 import s from './App.module.less'
+import { uploadAvatar } from '@/api';
+
 export default function App() {
 
   const [showNav, setShowNav] = useState(false)
-  const needNav = ['/','/data']
+  const needNav = ['/','/data','/user']
   const { pathname } = useLocation() // 路由切换的路径
   // console.log(location)
   // 当url 切换为/user 的时候 showNav false
@@ -26,6 +28,12 @@ export default function App() {
       needNav.includes(pathname)
     )
   },[pathname])
+
+  useEffect(()=>{
+    (async()=>{
+      await uploadAvatar()
+    })
+  })
   
   return (
     <ConfigProvider primaryColor='#007fff'>

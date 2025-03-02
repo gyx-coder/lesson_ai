@@ -193,10 +193,50 @@
     - 需要强大的定制性  入驻
       title footer props  string | JSX 传入
     - content 表单 | JSX ... slot(插槽，具名插槽)
-    
 
+## AI 特性
+  - prompt 提效的模板
+  假如你是前端工程师 使用react + javascript 技术栈， 请根据上图分析功能模块和交互细节 给出要开发的功能点， 难点 和预计需要的开发时间。 只需要开发前端， 后端不需要考虑。
 
+## 首页 静态开发
+- 先想清楚，再动手  ai
+  了解需求的prompt 模板
+- 用户的账单列表
+  - 所有，按时间排序  倒序  分页
+  - 按类型查询(支出|收入)
+  - 按月份查询
+- 整个页面的统计 响应式
+- 按日期分组
+  列表 细节，并进行支出和收入的统计
+- 交互
+  - 类型的弹出
+  - 日期的弹出
+  - 新增支出的弹出
+- 开发时间？
+- list 列表业务
+  - 比较复杂，两重循环
+  - 按日期分组 数据设计比较复杂
+- 设计稿， prompt ai 来拿假数据 给他一个例子
+假如你是一个前端工程师，请基于const [list, setList] = useState([
+    {
+      bills: [
+        {
+          amount: "25.00",
+          date: "1740398609507",
+          id: 911,
+          pay_tye: 1,
+          remark: "",
+          type_id: 1,
+          type_name: "餐饮"
+        }
+      ],
+      date: '2025-02-24'
+    }
+  ]) 数据格式， 根据上传图片，帮我组织list 初始化的数据 并返回给我， 其他的不做。
 
+  - 封装了Bill组件
+    - 复用
+    - 模块化 index 太复杂 代码不要太多 方便维护
 
 
 # notebook 后端api服务
@@ -229,3 +269,51 @@
   - x-www-form-urlencoded key=>value
   - json  复杂数据结构
 - get / post 区别 
+
+
+
+
+
+
+
+
+
+
+- 登录
+  - 前端 Login组件 submit
+  - api/login  全部的请求都在这
+    /login { username,password }
+  - utils/axios 
+    - baseURL  /api/login
+    - /api 后端提供的接口地址的标志，前后端分离
+    - 不带/api，前端路由react-router-dom  管理
+  - axios 请求  被vite 配置的server 拦截
+    proxy 解决了跨域问题
+    rewrite  /api  干掉了
+  - 后端提供接口，后端也可以不只提供接口，自己的mvc
+
+
+
+
+
+- 修改用户slogan
+  全栈功能  前端修改表单
+  后端 Update + MVC
+  - 前后端分离
+    - 先后端
+      - 提供一个修改slogan的接口
+        - 路由
+          restful api 一切皆资源  设计url的一种规范
+        - 中间件 鉴权
+          拦在控制器之前 token-> verify user 挂在ctx上，next()
+        - 控制器
+        - service
+          - model 已创建
+          - orm sequelize
+          数据库操作
+        - apifox 请求模拟器
+
+    - 再前端
+      - 路由
+      - userinfo 组件
+      - api editUserInfo

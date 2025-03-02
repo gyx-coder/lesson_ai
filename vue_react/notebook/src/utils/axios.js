@@ -8,12 +8,12 @@ axios.defaults.withCredentials = true // 跨域请求携带cookie
 // 约定 后端知道  异步请求
 axios.defaults.headers['X-Request-With'] = 'XMLHttpRequest'
 // JWT token Authorization 授权码
-axios.defaults.headers['Authorization'] = `${localStorage.getItem('token')} || null`
+axios.defaults.headers['Authorization'] = `${localStorage.getItem('token')|| null} `
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 // axios.interceptors.request.use(config=>{
 //   console.log('请求拦截~~~~~~',config)
-//   config.headers['Authorization'] = `${localStorage.getItem('token')} || null`
+//   config.headers['Authorization'] = `${localStorage.getItem('token')|| null} `
 //   return config
 // })
 // 响应拦截器

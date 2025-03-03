@@ -237,6 +237,10 @@
   - 封装了Bill组件
     - 复用
     - 模块化 index 太复杂 代码不要太多 方便维护
+    - prop-types 类型约束 强大
+  - utils
+    - 封装公用的js 函数或配置
+
 
 
 # notebook 后端api服务

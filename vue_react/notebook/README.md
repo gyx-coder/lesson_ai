@@ -241,6 +241,53 @@
   - utils
     - 封装公用的js 函数或配置
 
+## 开发流程
+- idear 创意
+  - aigc 结合
+- 需求分析
+  - 用户需求
+  - 功能点
+- 建立数据库
+  - 设计表结构
+- 前端开发 
+  - react 
+- 后端开发
+  - egg.js
+- 测试
+- 部署上线
+
+   CREATE TABLE IF NOT EXISTS user ( 
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    username VARCHAR(100) NOT NULL UNIQUE, 
+    ctime VARCHAR(100) NOT NULL, 
+    avatar VARCHAR(100), 
+    signature VARCHAR(100), 
+    password VARCHAR(100) NOT NULL ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+## 代码开发风格的一部分
+- AI编程工具的使用
+  - MarsCode
+  - Cursor / Trade
+  - prompt engineering
+  - "交互" 前端不可替代
+  - 多语言 低代码 快速学习 
+  - 不只是项目开发前 prompt 生成项目
+  - 细节功能 喂伪代码 aigc 代码更靠谱
+
+- mysql 
+  - mysql2 数据库驱动
+  - egg-sequelize orm 框架
+    不需要写sql 直接对象开干
+    封装了sql
+  - service 
+    CRUD 
+  - model
+    User 
+
+
+
+
+
 
 
 # notebook 后端api服务
@@ -273,12 +320,6 @@
   - x-www-form-urlencoded key=>value
   - json  复杂数据结构
 - get / post 区别 
-
-
-
-
-
-
 
 
 

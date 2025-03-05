@@ -3,7 +3,10 @@ import { Button, FilePicker, Input, Toast } from 'zarm';
 import { useNavigate } from 'react-router-dom';
 // import Header from '@/components/Header';
 import axios from 'axios';
-import { getUserInfo } from '@/api'
+import { 
+  getUserInfo ,
+  updateSignature
+} from '@/api'
 // import { get, post } from '@/utils'
 // import { baseUrl } from 'config'
 import s from './style.module.less';
@@ -17,44 +20,43 @@ const UserInfo = () => {
 
   useEffect(() => {
     (async () => {
-      const res = await getUserInfo()
-    })
+      const { data } = await getUserInfo();
+      console.log(data)
+      setSignature(data.signature)
+    })()
   }, [])
 
   // 获取用户信息
-  const getUserInfo = async () => {
-    const { data } = await get('/api/user/get_userinfo');
-    setUser(data);
-    setAvatar(imgUrlTrans(data.avatar))
-    setSignature(data.signature)
-  };
+  // const getUserInfo = async () => {
+  //   const { data } = await get('/api/user/get_userinfo');
+  //   setUser(data);
+  //   setAvatar(imgUrlTrans(data.avatar))
+  //   setSignature(data.signature)
+  // };
 
-  const handleSelect = (file) => {
-    console.log('file.file', file.file)
-    if (file && file.file.size > 200 * 1024) {
-      Toast.show('上传头像不得超过 200 KB！！')
-      return
-    }
-    let formData = new FormData()
-    formData.append('file', file.file)
-    axios({
-      method: 'post',
-      url: `/api/upload`,
-      data: formData,
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        'Authorization': token
-      }
-    }).then(res => {
-      // setAvatar(imgUrlTrans(res.data))
-    })
-  }
+  // const handleSelect = (file) => {
+  //   console.log('file.file', file.file)
+  //   if (file && file.file.size > 200 * 1024) {
+  //     Toast.show('上传头像不得超过 200 KB！！')
+  //     return
+  //   }
+  //   let formData = new FormData()
+  //   formData.append('file', file.file)
+  //   axios({
+  //     method: 'post',
+  //     url: `/api/upload`,
+  //     data: formData,
+  //     headers: {
+  //       'Content-Type': 'multipart/form-data',
+  //       'Authorization': token
+  //     }
+  //   }).then(res => {
+  //     // setAvatar(imgUrlTrans(res.data))
+  //   })
+  // }
 
   const save = async () => {
-    const { data } = await post('/api/user/edit_userinfo', {
-      signature,
-      avatar
-    });
+    const { data } = await updateSignature(signature);
 
     Toast.show('修改成功')
     navigate.go(-1)

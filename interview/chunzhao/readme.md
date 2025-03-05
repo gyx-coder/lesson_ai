@@ -39,3 +39,7 @@
   
 ## HTML5
 - websocket-chat
+
+## VUE
+- v-if/v-show 的区别
+- vue 组件通信

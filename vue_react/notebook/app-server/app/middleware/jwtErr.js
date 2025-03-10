@@ -9,7 +9,7 @@ module.exports = (secret) =>{
       try{
         decode= ctx.app.jwt.verify(token,secret)
         // console.log(decode)
-        ctx.user= decode
+        ctx.user= decode 
         await next()
       } catch(err){
         ctx.body= {

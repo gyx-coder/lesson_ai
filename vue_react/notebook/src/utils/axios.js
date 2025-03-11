@@ -27,7 +27,7 @@ axios.interceptors.response.use(res=>{
     return Promise.reject(res)
   }
 
-  if(res.data.doce !== 200){
+  if(res.data.code !== 200){
       if(res.data.msg) Toast.show(res.data.msg)
         if(res.data.code === 401){ // 状态码 401 unauthorized
           window.location.href = '/login'

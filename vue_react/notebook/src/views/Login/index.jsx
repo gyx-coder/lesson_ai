@@ -4,6 +4,9 @@ import React, {
   useCallback, // 缓存函数
   useEffect 
 } from 'react';
+import {
+  useNavigate
+} from 'react-router-dom'
 // 代码风格要介绍 写注释 驼峰命名 函数式编程 封装 模块话 伪代码
 import {
   Cell,
@@ -21,7 +24,7 @@ const Login = () => {
   const [type, setType] = useState('login');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+  const navigate = useNavigate();
   useEffect(() => {
     document.title = '登录'
   }, [])
@@ -37,12 +40,17 @@ const Login = () => {
     }
     try{
       if(type== 'login'){
-        const {data} = await login(username,password)
-        console.log(data)
-        localStorage.setItem('token',data.token)
+        const result = await login(username,password)
+        // console.log(data)
+        localStorage.setItem('token',result.data.token)
+        // // window.location.href = '/home'
+        setTimeout(()=>{
+          navigate('/user') 
+        },1000)
+        console.log('登录成功')
       }
-    }catch(err){
-      
+    } catch (err){
+      console.log(err,'++++++++++++++++')
     }
   }
 

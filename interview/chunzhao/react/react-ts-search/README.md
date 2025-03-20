@@ -18,3 +18,15 @@
 
 - pnpm dlx shadcn@latest init
 - pnpm dlx shadcn@latest add button 
+
+- 防抖
+  - 服务器端压力
+  - 性能优化
+  - utils/
+    纯粹的js 工具函数 复用
+
+- hooks
+  - 封装响应式业务
+
+- async await 
+  - 模拟sleep 功能

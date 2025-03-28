@@ -1,15 +1,15 @@
 // Service 模块 sql 服务
-'use strict'
+'use strict';
 
-const Service = require('egg').Service
+const Service = require('egg').Service;
 
-class HomeService extends Service{
-  async user(){
-    return {
-      name:'嘎子',
-      slogen:"潘子说我不应该带货...."
+class HomeService extends Service {
+    async user() {
+        return {
+            name: "PW",
+            age: 22
+        }
     }
-  }
 }
 
-module.exports = HomeService;
+module.exports =  HomeService;

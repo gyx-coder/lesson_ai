@@ -1,0 +1,372 @@
+// 定义常用变量
+@primary-color: #007aff;
+@secondary-color: #f0f6ff;
+@background-color: #fff;
+@border-color: #e0e0e0;
+@text-color: #333;
+@border-radius: 4px;
+@font-size: 14px;
+@bottom-nav-height: 60px;
+@extra-space: 40px;
+
+.chatContainer {
+  display: flex;
+  height: 100vh;
+  background-color: @background-color;
+  padding-bottom: (@bottom-nav-height + @extra-space);
+  padding-top: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: @font-size; 
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: 45px;
+  }
+}
+
+.chatMain {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: @background-color;
+  padding: 20px;
+  position: relative;
+
+  @media (max-width: 768px) {
+    border-right: none;
+    padding: 15px;
+    min-height: 60vh;
+  }
+}
+
+.chatLog {
+  flex: 1;
+  padding-bottom: 170px; 
+  &::-webkit-scrollbar {
+    width: 8px;
+    &-track {
+      background: #f1f1f1;
+    }
+    &-thumb {
+      background: #888;
+      border-radius: 4px;
+      &:hover {
+        background: #555;
+      }
+    }
+  }
+}
+
+.message {
+  margin-bottom: 15px;
+  max-width: 90%;
+
+  @media (max-width: 768px) {
+    max-width: 85%;
+  }
+}
+
+.bubble {
+  padding: 12px 18px;
+  border-radius: 20px;
+  line-height: 1.5;
+  word-break: break-word;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: @font-size; 
+  position: relative;
+  transition: all 0.3s ease; /* 添加过渡效果 */
+
+  &.user {
+    background-color: @primary-color;
+    color: white;
+    align-self: flex-end;
+  }
+
+  &.assistant {
+    background-color: @secondary-color;
+    color: @text-color;
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px 15px;
+    font-size: @font-size;
+  }
+}
+
+.copyButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  border: none;
+  border-radius: @border-radius;
+  padding: 2px 5px;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.2s;
+
+  .bubble:hover & {
+    opacity: 1;
+  }
+}
+
+.inputArea {
+  display: flex;
+  flex-shrink: 0;
+  padding: 15px 20px; 
+  border-top: 1px solid @border-color;
+  position: fixed;
+  bottom: 50px; 
+  left: 0;
+  right: 0;
+  z-index: 10; 
+  background-color: @background-color; 
+
+  textarea {
+    flex: 1;
+    resize: none;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: @border-radius;
+    height: 80px;
+    font-size: @font-size; 
+
+    &:focus {
+      border-color: @primary-color;
+      box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.25);
+      outline: none;
+    }
+  }
+
+  .sendButton {
+    background: @primary-color;
+    color: white;
+    transition: background 0.2s;
+    border: none;
+    border-radius: @border-radius;
+    padding: 8px 15px; 
+    margin-left: 10px;
+    font-size: @font-size; 
+
+    &:hover {
+      background: darken(@primary-color, 20%);
+    }
+    &:disabled {
+      background: #6c757d;
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    textarea {
+      margin: 0 0 10px;
+    }
+    .sendButton {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+}
+
+.backToTop {
+  position: fixed;
+  right: 20px;
+  bottom: 140px; 
+  background: @primary-color;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: none;
+  z-index: 11;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  @media (max-width: 768px) {
+    right: 15px;
+    bottom: 130px;
+    width: 35px;
+    height: 35px;
+  }
+}
+
+.mobileSettingsButton {
+  position: fixed; 
+  top: 50px; 
+  right: 10px; 
+  background: @primary-color;
+  color: white;
+  transition: background 0.2s;
+  border: none;
+  border-radius: @border-radius;
+  padding: 8px 15px; 
+  font-size: @font-size; 
+
+  &:hover {
+    background: darken(@primary-color, 20%);
+  }
+
+  @media (max-width: 768px) {
+    top: 50px;
+    right: 10px;
+  }
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0; /* 初始透明度为 0 */
+  visibility: hidden; /* 初始不可见 */
+  transition: all 0.3s ease; /* 添加过渡效果 */
+
+  &.active {
+    opacity: 1; /* 显示时透明度为 1 */
+    visibility: visible; /* 显示时可见 */
+  }
+}
+
+.settingsModal {
+  background: white;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  font-size: @font-size; 
+  display: flex;
+  flex-direction: column;
+
+  .modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+
+    h3 {
+      margin: 0;
+    }
+
+    .closeButton {
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: @text-color;
+      cursor: pointer;
+
+      &:hover {
+        color: #000;
+      }
+    }
+  }
+
+  .settingItem {
+    margin-bottom: 15px;
+
+    button {
+      background: @primary-color;
+      color: white;
+      transition: background 0.2s;
+      border: none;
+      border-radius: @border-radius;
+      padding: 8px 15px; 
+      font-size: @font-size; 
+      margin-right: 10px;
+
+      &:hover {
+        background: darken(@primary-color, 20%);
+      }
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: @border-radius;
+      font-size: @font-size; 
+
+      &:focus {
+        border-color: @primary-color;
+        box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.25);
+        outline: none;
+      }
+    }
+  }
+
+  .conversationList {
+    .convItem {
+      padding: 12px;
+      transition: all 0.2s ease;
+      border-radius: 6px;
+      font-size: @font-size;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      border: 1px solid transparent;
+
+      &:hover {
+        background: #f8f9fa;
+        border-color: #e9ecef;
+      }
+
+      .deleteButton {
+        color: #dc3545;
+        background: none;
+        border: none;
+        font-size: 18px;
+        margin-left: 10px;
+        padding: 4px 8px;
+        border-radius: @border-radius;
+        transition: all 0.2s ease;
+
+        &:hover {
+          color: #fff;
+          background: #dc3545;
+        }
+      }
+      button {
+        background: @primary-color;
+        color: white;
+        transition: background 0.2s;
+        border: none;
+        border-radius: @border-radius;
+        padding: 6px 12px; 
+        font-size: @font-size; 
+
+        &:hover {
+          background: darken(@primary-color, 20%);
+        }
+      }
+    }
+  }
+}
+
+/* 横屏优化 */
+@media (max-width: 768px) and (orientation: landscape) {
+  .chatContainer {
+    flex-direction: row;
+  }
+  .settingsModal {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+}

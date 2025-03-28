@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TabBar } from 'zarm';
-import s from './style.module.less'
+import s from './style.module.less';
 // 有哪些类型
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import CustomIcon from '@/components/CustomIcon';
 
 const NavBar = ({ showNav }) => {
   const [activeKey, setActiveKey] = useState('/');
-  const navigateTo = useNavigate()
+  const navigateTo = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    setActiveKey(location.pathname);
+  }, [location.pathname]);
 
   const changeTab = (path) => {
     setActiveKey(path)
@@ -26,6 +31,11 @@ const NavBar = ({ showNav }) => {
         itemKey="/data"
         title="统计"
         icon={<CustomIcon type="tongji"/>}
+      />
+      <TabBar.Item
+        itemKey="/llm"
+        title="AI"
+        icon={<CustomIcon type="xuexi"/>}
       />
       <TabBar.Item
         itemKey="/user"

@@ -1,13 +1,9 @@
 import React, {
   useState,
-  useRef, // dom 或对象 ref 
-  useCallback, // 缓存函数
-  useEffect 
+  useRef,
+  useCallback,
+  useEffect
 } from 'react';
-import {
-  useNavigate
-} from 'react-router-dom'
-// 代码风格要介绍 写注释 驼峰命名 函数式编程 封装 模块话 伪代码
 import {
   Cell,
   Input,
@@ -18,88 +14,108 @@ import {
 import s from './style.module.less'
 import cx from 'classnames';
 import CustomIcon from '@/components/CustomIcon';
-import { login } from '@/api';
+import { login, register } from '@/api';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
   const [type, setType] = useState('login');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
-  useEffect(() => {
-    document.title = '登录'
-  }, [])
+  const [verify, setVerify] = useState('');
+  const [agree, setAgree] = useState(false);
 
-  const onSubmit=async()=>{
-    if(!username){
-      Toast.show('请输入账号')
-      return
+  useEffect(() => {
+    document.title = type === 'login' ? '登录' : '注册'
+  }, [type])
+
+  const onSubmit = async () => {
+    if (!username) {
+      Toast.show('请输入账号');
+      return;
     }
-    if(!password){
-      Toast.show('请输入密码')
-      return
+    if (!password) {
+      Toast.show('请输入密码');
+      return;
     }
-    try{
-      if(type== 'login'){
-        const result = await login(username,password)
-        // console.log(data)
-        localStorage.setItem('token',result.data.token)
-        // // window.location.href = '/home'
-        setTimeout(()=>{
-          navigate('/user') 
-        },1000)
-        console.log('登录成功')
+    try {
+      if (type == 'login') {
+        const { data } = await login(username, password);
+        localStorage.setItem('token', data.token);
+        Toast.show('登录成功');
+        navigate('/');
+      } else {
+        if (!verify) {
+          Toast.show('请再次输入密码');
+          return;
+        }
+        if (verify !== password) {
+          Toast.show('两次输入的密码不一致');
+          return;
+        }
+        if (!agree) {
+          Toast.show('请阅读并同意条款');
+          return;
+        }
+        const { data } = await register(username, password);
+        Toast.show('注册成功');
+        setType('login');
       }
-    } catch (err){
-      console.log(err,'++++++++++++++++')
+    } catch (err) {
+      Toast.show('系统错误');
     }
   }
 
   return (
-    <div className={s.auth}>
-      <div className={s.head} />
-      <div className={s.tab}>
-        {/* <span :class={s.active:type='login'}></span> */}
-        <span className={cx({ [ s.active ]: type== 'login'})} onClick={() => setType('login')}>登录</span>
-        <span className={cx({ [ s.active ]: type== 'register'})} onClick={() => setType('register')}>注册</span>
-      </div>
-      <div className={s.form}>
-        <Cell icon={<CustomIcon type="zhanghao"/>}>
-          <Input 
-            clearable
-            type="text"
-            placeholder='请输入账号'
-            onChange={(value) => setUsername(value)}
-          />
-        </Cell>
-        <Cell icon={<CustomIcon type="mima"/>}>
-          <Input 
-            clearable
-            type="password"
-            placeholder='请输入密码'
-            onChange={(value) => setPassword(value)}
-          />
-        </Cell>
-        {/* { type=="register" ? (<Cell icon={<CustomIcon type="mima"/>}>
-          <Input 
-            clearable
-            type="password"
-            placeholder='请重复输入密码'
-            onChange={(value) => setPassword(value)}
-          />
-          </Cell>): null
-        } */}
-        <div className={s.operation}>
-          {
-            type=="register"?(<div className ={s.agree}>
-              <Checkbox />
-              <label className='text-light'>阅读并同意<a>《使用条款》</a></label>
-            </div>):null
-          }
-          <Button onClick={onSubmit} block theme="primary">{type=="login"?"登录":"注册"}</Button>
+    <form>
+      <div className={s.auth}>
+        <div className={s.head} />
+        <div className={s.tab}>
+          <span className={cx({ [s.active]: type == 'login' })} onClick={() => setType('login')}>登录</span>
+          <span className={cx({ [s.active]: type == 'register' })} onClick={() => setType('register')}>注册</span>
+        </div>
+        <div className={s.form}>
+          <Cell icon={<CustomIcon type="zhanghao" />}>
+            <Input
+              clearable
+              type="text"
+              placeholder='请输入账号'
+              onChange={(value) => setUsername(value)}
+            />
+          </Cell>
+          <Cell icon={<CustomIcon type="mima" />}>
+            <Input
+              clearable
+              type="password"
+              placeholder='请输入密码'
+              onChange={(value) => setPassword(value)}
+            />
+          </Cell>
+          {type == "register" && (
+            <Cell icon={<CustomIcon type="mima" />}>
+              <Input
+                clearable
+                type="password"
+                placeholder='请重复输入密码'
+                onChange={(value) => setVerify(value)}
+              />
+            </Cell>
+          )}
+          <div className={s.operation}>
+            {
+              type == "register" && (
+                <div className={s.agree}>
+                  <Checkbox checked={agree} onChange={(value) => setAgree(value)} />
+                  <label className="text-light">阅读并同意<a>《使用条款》</a></label>
+                </div>
+              )
+            }
+            <Button onClick={onSubmit} block theme="primary">{type == "login" ? "登录" : "注册"}</Button>
+          </div>
         </div>
       </div>
-    </div>
+    </form>
   )
-} 
+}
 
 export default Login;

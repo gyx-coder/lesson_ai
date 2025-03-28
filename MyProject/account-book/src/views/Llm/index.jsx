@@ -289,7 +289,7 @@ const Llm = () => {
 
         {/* 移动端设置弹出层 */}
         {showSettingsModal && (
-          <div className={styles.modalOverlay} onClick={() => setShowSettingsModal(false)}>
+          <div className={`${styles.modalOverlay} ${showSettingsModal ? styles.active : ''}`} onClick={() => setShowSettingsModal(false)}>
             <div className={styles.settingsModal} onClick={(e) => e.stopPropagation()}>
               <div className={styles.modalHeader}>
                 <h3>模型设置</h3>

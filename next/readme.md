@@ -30,3 +30,26 @@
   - layout.js 布局
     children  vue slot 
     - page.js 页面
+
+- npm 包
+  - dayjs 
+  - uuid 并发
+
+- 组件的设计
+  - 组件的拆分粒度
+    - 复用
+    - 管理
+    - 下线方便
+  - 复制组件
+    - SidebarNoteItem
+    - 可展开收起
+    - skeleton 骨架屏
+      用户体验优化方案
+      loading (菊花)好在哪? 基本的格局
+    - 动态样式 展开/激活
+    - 新增/修改后的动画  falsh 
+      触发onAnimationEnd 事件 移除flash
+
+- react hook
+  - useRef
+  - useTransition 方便? transition isPending true

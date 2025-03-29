@@ -1,4 +1,5 @@
 import Redis from "ioredis"; // redis node js client
+import { v4 as uuidv4 } from 'uuid';
 
 const REDIS_PASSWORD = '123456'
 
@@ -25,4 +26,24 @@ export async function getAllNotes(){
     await redis.hset("notes",initialData) // 插入数据
   }
   return await redis.hgetall("notes")
+}
+
+// add
+export async function addNote(data){
+  // 唯一值
+  const uuid = uuidv4()
+  // const uuid = Date.now().toString()
+  await redis.hset("notes",[uuid],data)
+}
+
+export async function getNote(uuid){
+  return JSON.parse(await redis.hget("notes",uuid))
+}
+
+export async function delNote(uuid){
+  return redis.hdel("notes",uuid)
+}
+
+export async function updateNote(uuid,data){
+  await redis .hset("notes",[uuid],data)
 }

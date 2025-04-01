@@ -61,3 +61,11 @@
   - performance 
     减少首屏JS/CSS 体积
   - lighthouse
+
+- 用setTimeout模拟setInterval 会有什么问题
+- 用promise 实现并发控制
+- promise红绿灯
+- 手写promise.allSettled
+- 手写Promise
+- http2.0 多路复用 是不是越多越好？会有上限吗?
+- cursor和windurf用的多吗？ 占比多少？ trae用过吗？
